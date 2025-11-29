@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kansha Casa  - Gastronomia Japonesa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #c62e2e;
+            --secondary: #1a1a1a;
+            --background: #f8f8f8;
+            --text: #333333;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/2098133/pexels-photo-2098133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #a52525;
+        }
+        
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Especialidades */
+        .specialties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .specialty-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .specialty-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .specialty-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .specialty-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .specialty-card:hover .specialty-img img {
+            transform: scale(1.1);
+        }
+        
+        .specialty-info {
+            padding: 20px;
+        }
+        
+        .specialty-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .specialty-info p {
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Nossa História */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Galeria */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    /* ===== NOVA HERO SECTION COM IMAGEM DE FUNDO ===== */
+.hero-section {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(restaurante.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin-top: 0; /* Remove a margem do header antigo */
+}
+
+.hero-section nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.hero-section nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.hero-section nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.hero-section nav a:hover {
+    color: #c62e2e;
+}
+
+.hero-section .hero-content {
+    max-width: 800px;
+}
+
+.hero-section .hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section .hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hero-section .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-section .hero-content p {
+        font-size: 18px;
+    }
+    
+    .hero-section nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .hero-section nav a {
+        font-size: 16px;
+    }
+}</style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <h1>Kansha Casa</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#historia">Nossa História</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section com imagem de fundo -->
+<section class="hero-section">
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#especialidades">Especialidades</a></li>
+            <li><a href="#historia">Nossa História</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero-content">
+        <h1>Autentica Gastronomia Japonesa</h1>
+        <p>Descubra os sabores tradicionais do Japão em uma experiência única e refinada.</p>
+        <a href="#especialidades" class="btn">Ver Cardápio</a>
+    </div>
+</section>
+
+    <!-- Especialidades -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossas Especialidades</h2>
+            </div>
+            <div class="specialties">
+                <!-- Prato 1 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/2323398/pexels-photo-2323398.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sushi Variado">
+                    </div>
+                    <div class="specialty-info">
+                       <body>
+                        <h3>Sushi Variado</h3>
+                        <p>Seleção de nigiris, makis e uramakis com os melhores ingredientes frescos.</p>
+                        <div class="price">R$ 89,99</div>
+<a class="btn" href="https://wa.me/5599985173692?text=Olá!%20Quero%20comprar:%20Sushi%20Variado" target="_blank">
+    🛒 Comprar agora
+</a>
+
+         </div>
+                </div>
+                
+                <!-- Prato 2 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen Tradicional">
+                    </div>
+                    <div class="specialty-info">
+                        <h3>Ramen Tradicional</h3>
+                        <p>Caldo intenso de porco, noodles artesanais, ovos marinados e fatias de chashu.</p>
+                         <div class="price">R$ 38,90</div>
+<a class="btn" href="https://wa.me/559985173692?text=Olá!%20Quero%20comprar:%20Ramen%20Tradicional" target="_blank">
+    🛒 Comprar agora
+
+</a>
+      
+         </div>
+                </div>
+                
+                <!-- Prato 3 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/1052189/pexels-photo-1052189.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tempura Misto">
+                    </div>
+                    <div class="specialty-info">
+                        <h3>Tempura Misto</h3>
+                        <p>Camarões e legumes empanados na técnica tradicional de fritura japonesa.</p>
+                        <div class="price">R$ 27,90</div>
+<a class="btn" href="https://wa.me/5599985173692?text=Olá!%20Quero%20comprar:%20Tempura%20Misto" target="_blank">
+    🛒 Comprar agora
+</a>
+
+                    </div>
+                </div>
+                
+                <!-- Prato 4 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/1352278/pexels-photo-1352278.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sashimi Premium">
+                    </div>
+                    <div class="specialty-info">
+                        <h3>Sashimi Premium</h3>
+                        <p>Fatias finas de salmão, atum e peixe branco da mais alta qualidade.</p>
+                        <div class="price">R$ 75,90</div>
+<a class="btn" href="https://wa.me/5599985173692?text=Olá!%20Quero%20comprar:%20Sashimi%20Premium" target="_blank">
+    🛒 Comprar agora
+</a>
+
+                    </div>
+                </div>
+                
+                <!-- Prato 5 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/248444/pexels-photo-248444.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Yakitori">
+                    </div>
+                    <div class="specialty-info">
+                        <h3>Yakitori</h3>
+                        <p>Espetinhos de frango grelhados no carvão com molho tare tradicional.</p>
+                        <div class="price">R$ 32,90</div>
+<a class="btn" href="https://wa.me/5599985173692?text=Olá!%20Quero%20comprar:%20Yakitori" target="_blank">
+    🛒 Comprar agora
+</a>
+
+                    </div>
+                </div>
+                
+                <!-- Prato 6 -->
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Donburi">
+                    </div>
+                    <div class="specialty-info">
+                        <h3>Donburi</h3>
+                        <p>Tigela de arroz com teriyaki de salmão, vegetais e ovo caipira.</p>
+                        <div class="price">R$ 45,90</div>
+<a class="btn" href="https://wa.me/5599985173692?text=Olá!%20Quero%20comprar:%20Donburi" target="_blank">
+    🛒 Comprar agora
+</a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section id="historia">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa História</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Uma Tradição de Sabores</h3>
+                    <p>Fundado em 2005 por Josué, José e Samuel, o Kansha Casa nasceu do ideal de três visionários apaixonados pela arte culinária japonesa. Unidos pelo desejo de trazer ao Brasil a autenticidade, a tradição e a sofisticação dos sabores do Japão, transformaram o restaurante em um verdadeiro embaixador da gastronomia nipônica.</p>
+                    <p>Nossa equipe de chefs é formada por profissionais que aperfeiçoaram suas técnicas no Japão com o chef Josué "o chef formado em Gastronomia por Harvard que não cozinha só comida — cozinha emoção, sabor e atitude". Cada prato é uma obra, e cada cliente, parte da história, que dominam as técnicas ancestrais da culinária nipônica, desde o corte preciso do sashimi até a arte do sushi.</p>
+                    <p>Acreditamos que a comida japonesa vai além do sabor - é uma experiência que envolve todos os sentidos, da apresentação impecável ao equilíbrio harmonioso de texturas e aromas.</p>
+                    <p>Utilizamos apenas ingredientes frescos e de alta qualidade, muitos importados diretamente do Japão, para garantir a autenticidade de cada prato que servimos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chef preparando sushi"> </div>
+
+
+<div style="width: 100%; text-align: left; margin-left: auto; margin-right: 30px;">
+  <h2>Onde tudo começou🏯</h2>
+<p>Tudo começou no Japão, em meio a vielas silenciosas e aromas que dançavam entre o gengibre e o vapor do lámen.
+Lá estava Josué, um jovem sonhador que via na culinária não apenas um ofício — mas uma forma de expressar alma.
+
+Ele deixou sua terra natal em busca de conhecimento e, com o coração cheio de esperança, conquistou o impossível:
+foi aceito na Universidade de Harvard, onde se formou em Gastronomia.
+Mas o caminho até lá não foi fácil — foram anos de sacrifício, solidão e noites em claro, estudando enquanto o corpo pedia descanso e o sonho insistia em continuar.
+
+Durante esse tempo, Josué nunca esqueceu de seus dois grandes amigos de infância — Samuel e José.
+Eles cresceram juntos, partilhando o mesmo amor pela culinária e o mesmo desejo de mudar o mundo à sua volta.
+Quando Josué finalmente retornou, trouxe consigo mais do que técnicas refinadas: trouxe um propósito.
+
+“Vamos levar a verdadeira essência da gastronomia japonesa ao Brasil”, disse ele com brilho nos olhos.
+Foi o impulso que Samuel e José precisavam para acreditar.
+Os três começaram com pouco — uma cozinha simples, pratos servidos em silêncio e um sonho maior do que qualquer dificuldade.
+
+As primeiras semanas foram duras. Havia dias em que o movimento era pequeno, e a dúvida parecia temperar cada refeição.
+Mas a paixão, a disciplina e o amor pela cultura japonesa os mantiveram firmes.
+A cada prato, eles colocavam não apenas ingredientes — mas pedaços de suas histórias, de suas origens e das cicatrizes de quem nunca desistiu.
+
+E assim nasceu o Kansha Casa:
+não apenas um restaurante, mas um símbolo de superação, amizade e fé em um sonho que começou do outro lado do mundo.
+
+Hoje, Josué, Samuel e José são lembrados como visionários — não por terem criado um negócio, mas por terem transformado dor em arte, e saudade em sabor.
+Cada refeição servida é um lembrete de que os sonhos mais difíceis são justamente os que mais valem a pena realizar.</p>
+
+</div>
+<!-- ABA DE GALERIA DE PREPAROS -->
+<section id="galeria" style="background-color:#fafafa; padding:50px 0; font-family:Arial, sans-serif;">
+  <div style="max-width:1000px; margin:auto; text-align:center;">
+    <h2 style="color:#d62828; font-size:28px; margin-bottom:20px;">🍣 Galeria de Preparos</h2>
+    <p style="color:#555; font-size:18px; margin-bottom:40px;">
+      Confira os vídeos e descubra como são preparados alguns dos pratos mais deliciosos da culinária japonesa!
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
+      <!-- Card 1 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍜 Preparação 1</h3>
+        <a href="https://www.youtube.com/watch?v=KUzYFMgWs4w" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍱 Preparação 2</h3>
+        <a href="https://www.youtube.com/watch?v=uNldUW5UT9s" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍤 Preparação 3</h3>
+        <a href="https://youtu.be/2ThU_9RfyvM?si=FpYyKEErn_Yjf6wr" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍣 Preparação 4</h3>
+        <a href="https://youtube.com/shorts/56ngZ13GBQE?si=fkyrClG5qhrnODoh" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+
+      <!-- Card 5 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍢 Preparação 5</h3>
+        <a href="https://youtu.be/oRgZRGtNdOg?si=v2w_-dEMr68_JcrD" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+
+      <!-- Card 6 -->
+      <div style="background:white; width:280px; padding:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <h3>🍥 Preparação 6</h3>
+        <a href="https://youtube.com/shorts/vpoddhmH2M8?si=hkYmHJnqipeb8xTj" target="_blank"
+           style="display:inline-block; margin-top:10px; background:#d62828; color:white; text-decoration:none; padding:10px 20px; border-radius:8px;">
+           ▶ Assistir
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeria</h2>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2323398/pexels-photo-2323398.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sushi variado">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1052189/pexels-photo-1052189.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tempura">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1352278/pexels-photo-1352278.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sashimi">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/248444/pexels-photo-248444.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Yakitori">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Donburi">
+                </div>
+                <div class="gallery-item">
+                    <img src="comida.jpg" alt="Preparo de comida japonesa">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chef trabalhando"
+
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kansha Casa</h3>
+                    <p>Autêntica gastronomia japonesa em um ambiente refinado e acolhedor.</p>
+              
+
+
+               </div>
+                <div class="footer-column">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Segunda a Quinta: 18h - 23h</p>
+                    <p>Sexta e Sábado: 18h - 00h</p>
+                    <p>Domingo: 18h - 22h</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua 7 de Setembro, 23 - Amarante do MA</p>
+                    <p><i class="fas fa-phone"></i> (99) 98517-3692</p>
+                    <p><i class="fas fa-envelope"></i> contato josuenunesviana22@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Kansha Casa. Todos os direitos reservados, olha o processo.</p>
+<p style="font-size: 22px;">foto dos nossos criadores abaixo ( >_< )</p>
+ <img width="400" height="300" src="visionarios.png" alt="foto do criador">
+             </div>
+        </div>
+<!-- ===================== ABA DE CONTATO ===================== -->
+<section id="contato" style="padding: 60px 20px; background:#fff8f0; font-family: Arial, sans-serif;">
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; gap:40px; align-items:center;">
+    
+    <!-- 📞 Informações de Contato -->
+    <div style="flex:1; min-width:300px;">
+      <h2 style="color:#c0392b; font-size:32px; margin-bottom:20px;">Entre em Contato</h2>
+      <p style="color: #2c3e50;font-size:18px; line-height:1.6;">
+        Quer saber mais sobre nossos pratos ou fazer um pedido especial? Fale diretamente conosco pelo WhatsApp ou SMS.  
+  Acompanhe também nosso Instagram para ver receitas, novidades e toda a experiência gastronômica que preparamos para você!
+      </p>
+      
+      <!-- 🟢 Botão WhatsApp -->
+      <a href="https://wa.me/5599985173692" target="_blank"
+         style="display:inline-block; margin-top:15px; background:#25d366; color:#fff; padding:12px 25px; border-radius:50px; font-weight:bold; text-decoration:none; font-size:18px; box-shadow:0 4px 6px rgba(0,0,0,0.2); transition:all 0.3s;">
+        📱 WhatsApp
+      </a>
+      
+      <!-- 🔴 Botão SMS -->
+      <a href="sms:+5599985173692?body=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20no%20Kansha Casa%20Gourmet."
+         style="display:inline-block; margin-top:15px; margin-left:10px; background:#e60012; color:#fff; padding:12px 25px; border-radius:50px; font-weight:bold; text-decoration:none; font-size:18px; box-shadow:0 4px 6px rgba(0,0,0,0.2); transition:all 0.3s;">
+        📩 SMS
+      </a>
+    </div>
+ <!-- 🟣 Botão Instagram -->
+      <a href="https://instagram.com/__josuenunes" target="_blank"
+         style="display:inline-block; margin-top:15px; margin-left:10px; background:#C13584; color:#fff; padding:12px 25px; border-radius:50px; font-weight:bold; text-decoration:none; font-size:18px; box-shadow:0 4px 6px rgba(0,0,0,0.2); transition:all 0.3s;">
+        📸 Instagram
+      </a>
+    
+    <!-- 🖼️ Imagem ou mapa -->
+    <div style="flex:1; min-width:300px; text-align:center;">
+      <img src="ifood.jpg" 
+           alt="Kansha Casa" style="width:100%; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+      <!-- Aqui você pode colocar um mapa do Google Maps se quiser -->
+    </div>
+<!-- ABA DE AVALIAÇÕES Kansha Casa -->
+<style>
+#avaliacoes-box {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    font-family: Arial;
+}
+
+#avaliacoes-box h2 {
+    text-align: center;
+    color: #c40000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* AVISOS */
+.aviso {
+    text-align: center;
+    color: #444;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* LISTA DE AVALIAÇÕES */
+.avaliacao {
+    background: #fff2f6;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid #c40000;
+}
+
+.estrelas {
+    color: gold;
+    font-size: 18px;
+}
+
+/* FORMULÁRIO */
+#minha-avaliacao {
+    margin-top: 25px;
+    background: #fff5fa;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+#minha-avaliacao h3 {
+    color: #c40000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ESTRELAS SELECIONÁVEIS */
+.rate input { display: none; }
+.rate label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.rate input:checked ~ label,
+.rate label:hover,
+.rate label:hover ~ label {
+    color: gold;
+}
+
+#comentario {
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ffb3c6;
+}
+
+#btnEnviar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #c40000;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btnEnviar:hover {
+    background: #900000;
+}
+<style>
+}
+
+#minha-avaliacao textarea,
+#minha-avaliacao label,
+#minha-avaliacao p {
+    color: black !important;
+}
+/* DEIXAR TODOS OS COMENTÁRIOS PRETOS */
+#lista-avaliacoes .avaliacao p,
+#lista-avaliacoes .avaliacao,
+#lista-avaliacoes p,
+.avaliacao p,
+.textoComentario {
+    color: #000 !important;
+}
+
+</style>
+
+<div id="avaliacoes-box">
+    <h2>Avaliações — Kansha Casa 🍣</h2>
+
+    <p class="aviso">Veja o que nossos clientes dizem:</p>
+
+    <!-- AVALIAÇÕES DE OUTRAS PESSOAS -->
+    <div id="lista-avaliacoes">
+        <div class="avaliacao">
+            <div class="estrelas">⭐⭐⭐⭐⭐</div>
+            <p>“Sushi incrível! Atendimento perfeito, arrasou josué” — samuel</p>
+        </div>
+
+        <div class="avaliacao">
+            <div class="estrelas">⭐⭐⭐⭐</div>
+            <p>“Muito saboroso, gostei tbm do moquiado de traira, só demorou um pouquinho.” — toin evangelista</p>
+        </div>
+
+        <div class="avaliacao">
+            <div class="estrelas">⭐⭐⭐⭐⭐</div>
+            <p>“Experiência maravilhosa! Recomendo demais.” — cleitin do Grau</p>
+        </div>
+    </div>
+
+    <!-- FAZER MINHA AVALIAÇÃO -->
+    <div id="minha-avaliacao">
+        <h3>Faça sua avaliação</h3>
+
+        <div class="rate">
+            <input type="radio" id="r5" name="rate"><label for="r5">★</label>
+            <input type="radio" id="r4" name="rate"><label for="r4">★</label>
+            <input type="radio" id="r3" name="rate"><label for="r3">★</label>
+            <input type="radio" id="r2" name="rate"><label for="r2">★</label>
+            <input type="radio" id="r1" name="rate"><label for="r1">★</label>
+        </div>
+
+        <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+
+        <button id="btnEnviar" onclick="adicionarAvaliacao()">Enviar</button>
+    </div>
+</div>
+
+<script>
+function adicionarAvaliacao() {
+    let estrelas = document.querySelector('input[name="rate"]:checked');
+    let comentario = document.getElementById("comentario").value;
+
+    if (!estrelas || comentario.trim() === "") {
+        alert("Por favor, selecione as estrelas e escreva um comentário!");
+        return;
+    }
+
+    let estrelasTxt = "⭐".repeat(estrelas.id.replace("r", ""));
+
+    let nova = `
+        <div class="avaliacao">
+            <div class="estrelas">${estrelasTxt}</div>
+            <p style="color:black !important;">“${comentario}” — lula</p>
+        </div>
+    `;
+
+    document.getElementById("lista-avaliacoes").innerHTML += nova;
+
+    document.getElementById("comentario").value = "";
+    estrelas.checked = false;
+
+    alert("Avaliação enviada com sucesso!");
+}
+</script>
+
+    </footer>
+</body>
+</html>
